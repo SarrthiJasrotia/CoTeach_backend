@@ -44,9 +44,6 @@ mongoose.connection
 
 require("./models/content");
 
-
-
-
 ///////////////////////////////
 // MIDDLEWARE
 ////////////////////////////////
@@ -79,6 +76,27 @@ app.get("/content" , async (req, res) => {
         res.status(400).json(error);
     }
 })
+
+// New Route
+
+// Delete Route
+
+// Update Route
+
+// Create Route
+
+app.post("/content" , async(req, res) => {
+    try {
+        res.json(await Content.create(req.body));
+    } catch (error) {
+        // send error
+        res.status(400).json(error);
+    }
+})
+
+// Edit Route
+
+// Show Route
 
 
 ///////////////////////////////
