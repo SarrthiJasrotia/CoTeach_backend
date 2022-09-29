@@ -6,7 +6,7 @@
 require("dotenv").config();
 
 // pull PORT and MONGODB_URL from .env
-const { PORT = 4000 || 4000, MONGODB_URL } = process.env;
+const { PORT, MONGODB_URL } = process.env;
 
 // import express
 const express = require("express");
@@ -40,11 +40,8 @@ mongoose.connection
 ///////////////////////////////
 // MODELS
 ////////////////////////////////
-const PeopleSchema = new mongoose.Schema({
-  name: String,
-});
 
-const People = mongoose.model("People", PeopleSchema);
+
 
 
 ///////////////////////////////
