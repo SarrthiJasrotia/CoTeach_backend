@@ -94,6 +94,18 @@ app.delete("content/:id" , async (req, res) => {
 
 // Update Route
 
+app.put("/content/:id" , async (req, res)=> {
+    try {
+        // send all people
+        res.json(
+            await Content.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        )
+    } catch (error) {
+        // send error
+        res.status(400).json(error)
+    }
+})
+
 // Create Route
 
 app.post("/content" , async(req, res) => {
