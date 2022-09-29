@@ -14,7 +14,11 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
