@@ -81,6 +81,17 @@ app.get("/content" , async (req, res) => {
 
 // Delete Route
 
+app.delete("content/:id" , async (req, res) => {
+    try {
+        // send all contend
+        res.json(await Content.findByIdAndRemove(req.params.id))
+    } catch (error) {
+        // send error
+        res.status(400).json(error);
+    }
+})
+
+
 // Update Route
 
 // Create Route
