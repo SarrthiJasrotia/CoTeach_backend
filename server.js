@@ -6,7 +6,8 @@
 require("dotenv").config();
 
 // pull PORT and MONGODB_URL from .env
-const { PORT, MONGODB_URL } = process.env;
+const { MONGODB_URL } = process.env;
+const PORT = process.env.PORT || 4000;
 
 // import express
 const express = require("express");
@@ -20,6 +21,7 @@ const mongoose = require("mongoose");
 // import middleware
 const cors = require('cors');
 const morgan = require('morgan');
+const Content = require("./models/content");
 
 ///////////////////////////////
 // DATABASE CONNECTION
@@ -41,8 +43,7 @@ mongoose.connection
 // MODELS
 ////////////////////////////////
 
-
-
+require("./models/content");
 
 ///////////////////////////////
 // MIDDLEWARE
@@ -65,10 +66,59 @@ app.get("/", (req, res) => {
   res.send("test route");
 });
 
+// Content Index
+
+app.get("/content" , async (req, res) => {
+    try {
+        // send all content
+        res.json(await Content.find({}))
+    } catch (error) {
+        // send error
+        res.status(400).json(error);
+    }
+})
+
+// Delete Route
+
+app.delete("content/:id" , async (req, res) => {
+    try {
+        // send all content
+        res.json(await Content.findByIdAndRemove(req.params.id))
+    } catch (error) {
+        // send error
+        res.status(400).json(error);
+    }
+})
+
+
+// Update Route
+
+app.put("/content/:id" , async (req, res)=> {
+    try {
+        // send all people
+        res.json(
+            await Content.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        )
+    } catch (error) {
+        // send error
+        res.status(400).json(error)
+    }
+})
+
+// Create Route
+
+app.post("/content" , async(req, res) => {
+    try {
+        res.json(await Content.create(req.body));
+    } catch (error) {
+        // send error
+        res.status(400).json(error);
+    }
+})
 
 ///////////////////////////////
 // LISTENER
 ////////////////////////////////
-app.listen(PORT, () => {
+app.listen(PORT || 4000, () => {
   console.log(`listening on PORT... ${PORT}`);
 });
