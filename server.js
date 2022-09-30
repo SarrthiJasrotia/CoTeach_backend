@@ -78,8 +78,6 @@ app.get("/content" , async (req, res) => {
     }
 })
 
-// New Route
-
 // Delete Route
 
 app.delete("content/:id" , async (req, res) => {
@@ -117,11 +115,6 @@ app.post("/content" , async(req, res) => {
         res.status(400).json(error);
     }
 })
-
-// Edit Route
-
-// Show Route
-
 
 ///////////////////////////////
 // LISTENER
