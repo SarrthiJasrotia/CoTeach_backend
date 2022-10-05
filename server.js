@@ -118,6 +118,17 @@ app.post("/content", async (req, res) => {
     }
 });
 
+// Notes INDEX ROUTE
+app.get("/notes", async (req, res) => {
+    try {
+        // send all notes
+        res.json(await Notes.find({}));
+    } catch (error) {
+        //send error
+        res.status(400).json(error);
+    }
+});
+
 // Notes Create Route
 app.post("/notes" , async (req, res) => {
     try {
