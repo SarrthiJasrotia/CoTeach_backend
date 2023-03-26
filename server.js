@@ -6,7 +6,7 @@
 require("dotenv").config();
 // pull PORT from .env, give default value of 4000
 // pull MONGODB_URL from .env
-const { PORT = 4000, MONGODB_URL } = process.env;
+const { PORT, MONGODB_URL } = process.env;
 
 // import express
 const express = require("express");
